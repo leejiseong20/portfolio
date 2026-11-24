@@ -187,6 +187,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .skill-card__title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
 .skill-card__label { font-size: 0.82rem; color: var(--ink-3); }
 .skill-card__list { display: flex; flex-wrap: wrap; gap: 9px; }
+.skill-card__list:has(.skill-logo) { display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: 14px 10px; }
+.skill-logo { display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 14px 6px 12px; border-radius: 12px; background: var(--bg, #f6f6f3); transition: transform .2s ease; }
+.skill-logo:hover { transform: translateY(-3px); }
+.skill-logo__img { width: 34px; height: 34px; object-fit: contain; }
+.skill-logo__mono { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 9px; background: #16161a; color: #fff; font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: -0.02em; }
+.skill-logo__name { font-size: 0.76rem; color: var(--ink-2); text-align: center; line-height: 1.25; }
 .skill-pill {
   font-size: 0.9rem; font-weight: 500; color: var(--ink);
   padding: 8px 15px; border-radius: 100px; background: rgba(20,20,25,0.045); cursor: default;
