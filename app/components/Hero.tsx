@@ -76,7 +76,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero__sub">
-          Spring Boot와 React로 서비스를 만드는 개발자, {PROFILE.name}입니다.
+          Spring Boot로 AI 서비스를 만드는 백엔드 개발자, {PROFILE.name}입니다.
         </p>
 
         <div className="hero__actions">

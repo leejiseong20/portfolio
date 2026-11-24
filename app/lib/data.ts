@@ -1,24 +1,29 @@
 export const PROFILE = {
   name: "이지성",
-  role: "백엔드 · 풀스택 개발자",
-  tagline: ["아이디어를 실제 서비스로", "구현하는 개발자입니다."],
+  role: "백엔드 개발자 · AI 서비스 연동",
+  tagline: ["AI 결과를 서비스로", "잇는 개발자입니다."],
   statement:
-    "백엔드 개발자를 목표로 Spring Boot 기반 웹 서비스를 개발하고 있습니다. JWT 인증, 데이터베이스 설계, REST API 개발, 실시간 통신 기능을 직접 구현하며 문제 해결 능력과 개발 역량을 키워가고 있습니다.",
+    "Spring Boot로 API를 만들고 AWS에 직접 배포·운영해 왔습니다. Gemini와 OpenAI 같은 생성형 AI를 서비스에 연동하면서, AI가 만든 결과를 실제 데이터와 연결하는 백엔드 설계에 집중하고 있습니다. 동작하는 코드를 넘어, 왜 그렇게 만들었는지 설명할 수 있는 코드를 씁니다.",
   location: "Seoul, Korea",
   experience: "Backend Developer",
 };
 
 export const STATS = [
   { value: "3+", label: "주요 프로젝트" },
+  { value: "2", label: "AI 연동 프로젝트" },
   { value: "10+", label: "사용 기술" },
-  { value: "2+", label: "년 학습 경험" },
 ];
 
 export const SKILL_GROUPS = [
   {
     title: "Backend",
     label: "백엔드",
-    items: ["Java", "Spring Boot", "Spring Security", "Spring Data JPA", "Querydsl", "JWT"],
+    items: ["Java", "Spring Boot", "Spring Security", "Spring Data JPA", "JWT", "WebSocket / STOMP"],
+  },
+  {
+    title: "AI & API",
+    label: "AI · 외부 연동",
+    items: ["OpenAI API", "Gemini API", "FastAPI 연동", "Riot API", "TourAPI", "OAuth 소셜 로그인"],
   },
   {
     title: "Frontend",
@@ -26,14 +31,9 @@ export const SKILL_GROUPS = [
     items: ["React", "JavaScript", "HTML5", "CSS3", "Vite"],
   },
   {
-    title: "Database",
-    label: "데이터베이스",
-    items: ["MySQL", "JPA", "Hibernate"],
-  },
-  {
-    title: "Tools & DevOps",
-    label: "도구 · 배포",
-    items: ["Git", "GitHub", "Docker", "AWS EC2", "Gradle"],
+    title: "Data & Infra",
+    label: "데이터 · 배포",
+    items: ["MySQL", "Docker", "AWS EC2", "AWS Lightsail", "Gradle", "Git / GitHub"],
   },
 ];
 
@@ -41,41 +41,44 @@ export const PROJECTS = [
   {
     num: "01",
     title: "여백 (旅白)",
-    summary: "AI 기반 공동 여행 일정 계획 및 예산 관리 웹 플랫폼",
+    summary: "AI 기반 공동 여행 일정 · 예산 관리 플랫폼 — 졸업작품, 백엔드 담당",
     description:
-      "Google · Kakao · Naver 소셜 로그인과 JWT 인증 시스템을 구축하고, WebSocket/STOMP 기반 실시간 일정 공유 기능을 구현했습니다. Gemini API와 Google Maps API를 연동해 AI 여행 일정 추천 기능을 제공합니다.",
-    tags: ["Spring Boot", "WebSocket", "OAuth2", "JWT", "Gemini API", "Docker", "FastAPI"],
+      "Gemini가 자유 텍스트로 만든 여행 일정을 장소 유형(placeType)과 장소 ID(placeId)로 실제 DB 장소에 연결하도록 저장 구조를 재설계해, AI 결과를 바로 서비스 데이터로 쓸 수 있게 했습니다. 한국관광공사 TourAPI 데이터(서울 기준 약 2,000건)를 적재하고, 소셜 로그인 3종 · JWT 인증 · WebSocket 실시간 일정 공유를 구현했습니다.",
+    tags: ["Spring Boot", "JWT", "WebSocket", "MySQL", "Docker", "FastAPI", "Gemini API", "TourAPI"],
     metrics: [
+      { k: "장소 데이터", v: "2,000+" },
       { k: "소셜 로그인", v: "3종" },
-      { k: "실시간 공유", v: "WebSocket" },
     ],
+    link: "https://github.com/keumbyeol/Yeoback-2026",
     motif: "chat" as const,
   },
   {
     num: "02",
-    title: "CommuniTalk",
-    summary: "게시글·팔로우·알림 기능을 갖춘 커뮤니티 SNS 플랫폼",
+    title: "탑시야 (TopSiya)",
+    summary: "소환사명만 입력하면 AI가 라인전 코칭 리포트를 써 주는 LoL 복기 서비스 — 개인",
     description:
-      "JWT HttpOnly Cookie 기반 Access Token(15분) + Refresh Token(7일) 이중 토큰 전략으로 보안을 강화했습니다. 게시글 작성/수정/삭제/검색·팔로우·좋아요·북마크·댓글·알림 등 SNS 핵심 기능 10종 이상을 단독 설계 및 구현했습니다.",
-    tags: ["Spring Boot", "Java 21", "Spring Security", "JWT", "MySQL", "Thymeleaf"],
+      "Riot API로 경기 타임라인을 자동 수집하고, 서버에서 분 단위 CS · 골드 격차와 데스 직전 60초 상황 등 핵심 구간만 추린 요약 JSON을 OpenAI에 전달합니다. 근거(시간 · 수치) 강제와 JSON 출력 고정 프롬프트로 믿을 수 있는 리포트를 만들고, 같은 경기는 한 번만 분석해 저장하는 방식으로 비용을 관리했습니다.",
+    tags: ["Spring Boot", "React", "OpenAI API", "Riot API", "MySQL", "Docker", "AWS Lightsail"],
     metrics: [
-      { k: "구현 기능", v: "10종+" },
-      { k: "인증 전략", v: "이중 토큰" },
+      { k: "AI 검증", v: "실경기 10개" },
+      { k: "개발", v: "기획~배포 단독" },
     ],
-    motif: "commerce" as const,
+    link: "https://github.com/leejiseong20/topsiya",
+    motif: "logs" as const,
   },
   {
     num: "03",
-    title: "Board Community",
-    summary: "Spring Boot + React 기반 커뮤니티 게시판 플랫폼",
+    title: "사우스에스이 홈페이지",
+    summary: "GMP 클린룸 엔지니어링 기업 홈페이지 반응형 리팩터링 — 외주",
     description:
-      "JWT 인증, 게시글·댓글 CRUD, 좋아요, 이미지 업로드, 관리자 기능 등 커뮤니티 핵심 기능을 구현했습니다. N+1 쿼리 개선, 조회수 중복 방지, AJAX 기반 좋아요 처리 등 성능 및 사용자 경험을 개선했습니다.",
-    tags: ["Spring Boot", "React", "JWT", "MySQL", "AWS EC2", "Vite"],
+      "PC · 모바일 페이지 두 벌을 JavaScript로 확대 · 축소하던 구조에서 모바일 마크업 누락으로 화면이 깨지는 원인을 찾아, 단일 시맨틱 HTML과 flex / grid · clamp() 기반 반응형으로 다시 만들었습니다. 인증서 13종 · 시공 실적 24건 등 원본 콘텐츠는 하나도 잃지 않도록 백업 후 작업했습니다.",
+    tags: ["HTML5", "CSS3", "Flexbox", "Grid", "clamp()", "JavaScript"],
     metrics: [
-      { k: "아키텍처", v: "풀스택" },
-      { k: "배포", v: "AWS EC2" },
+      { k: "브레이크포인트", v: "3단계" },
+      { k: "콘텐츠 보존", v: "100%" },
     ],
-    motif: "logs" as const,
+    link: "http://www.southse.co.kr/",
+    motif: "commerce" as const,
   },
 ];
 
