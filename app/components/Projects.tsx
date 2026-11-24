@@ -135,6 +135,16 @@ function ProjectRow({ project, flip }: { project: typeof PROJECTS[0]; flip: bool
             <li key={i} className="tag">{t}</li>
           ))}
         </ul>
+        {project.link && (
+          <a
+            className="project__link"
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {project.link.includes("github.com") ? "GitHub 저장소 보기 ↗" : "사이트 보기 ↗"}
+          </a>
+        )}
       </div>
     </article>
   );
