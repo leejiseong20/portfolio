@@ -14,26 +14,58 @@ export const STATS = [
   { value: "10+", label: "사용 기술" },
 ];
 
-export const SKILL_GROUPS = [
+// icon: public/skills/ 아래 로고 파일 이름. 로고가 없는 기술은 mono 약자를 표시
+export const SKILL_GROUPS: {
+  title: string;
+  label: string;
+  items: { name: string; icon?: string; mono?: string }[];
+}[] = [
   {
     title: "Backend",
     label: "백엔드",
-    items: ["Java", "Spring Boot", "Spring Security", "Spring Data JPA", "JWT", "WebSocket / STOMP"],
+    items: [
+      { name: "Java", icon: "java" },
+      { name: "Spring Boot", icon: "springboot" },
+      { name: "Spring Security", icon: "springsecurity" },
+      { name: "JPA", icon: "hibernate" },
+      { name: "JWT", icon: "jwt" },
+      { name: "WebSocket", mono: "WS" },
+    ],
   },
   {
     title: "AI & API",
     label: "AI · 외부 연동",
-    items: ["OpenAI API", "Gemini API", "FastAPI 연동", "Riot API", "TourAPI", "OAuth 소셜 로그인"],
+    items: [
+      { name: "OpenAI API", mono: "AI" },
+      { name: "Gemini API", icon: "gemini" },
+      { name: "FastAPI", icon: "fastapi" },
+      { name: "Riot API", icon: "riot" },
+      { name: "TourAPI", mono: "TA" },
+      { name: "OAuth", icon: "oauth" },
+    ],
   },
   {
     title: "Frontend",
     label: "프론트엔드",
-    items: ["React", "JavaScript", "HTML5", "CSS3", "Vite"],
+    items: [
+      { name: "React", icon: "react" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "HTML5", icon: "html5" },
+      { name: "CSS3", icon: "css3" },
+      { name: "Vite", icon: "vite" },
+    ],
   },
   {
     title: "Data & Infra",
     label: "데이터 · 배포",
-    items: ["MySQL", "Docker", "AWS EC2", "AWS Lightsail", "Gradle", "Git / GitHub"],
+    items: [
+      { name: "MySQL", icon: "mysql" },
+      { name: "Docker", icon: "docker" },
+      { name: "AWS", icon: "aws" },
+      { name: "Gradle", icon: "gradle" },
+      { name: "Git", icon: "git" },
+      { name: "GitHub", icon: "github" },
+    ],
   },
 ];
 

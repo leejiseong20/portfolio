@@ -36,7 +36,23 @@ function SkillCard({ group, index }: { group: typeof SKILL_GROUPS[0]; index: num
       </div>
       <ul className="skill-card__list">
         {group.items.map((it, i) => (
-          <li className="skill-pill" key={i}>{it}</li>
+          <li className="skill-logo" key={i} title={it.name}>
+            {it.icon ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                className="skill-logo__img"
+                src={`/skills/${it.icon}.svg`}
+                alt=""
+                width={34}
+                height={34}
+              />
+            ) : (
+              <span className="skill-logo__mono" aria-hidden="true">
+                {it.mono ?? it.name.slice(0, 2)}
+              </span>
+            )}
+            <span className="skill-logo__name">{it.name}</span>
+          </li>
         ))}
       </ul>
     </div>
