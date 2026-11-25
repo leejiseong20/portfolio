@@ -245,8 +245,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .project__metric-k { font-size: 0.8rem; color: var(--ink-3); }
 .project__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
 .tag { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-2); padding: 6px 12px; border: 1px solid var(--line); border-radius: 7px; }
-.project__link { display: inline-block; margin-top: 22px; font-family: var(--mono); font-size: 0.85rem; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
-.project__link:hover { opacity: 0.6; }
+.project__media-frame--link { display: block; cursor: pointer; transition: box-shadow 0.4s ease; }
+.project__media-frame--link:hover { box-shadow: 0 46px 90px -46px rgba(0,0,0,0.55); }
+.project__placeholder { transition: transform 0.6s var(--ease); }
+.project__media-frame--link:hover .project__placeholder { transform: scale(1.03); }
+.project__links { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+.project__link {
+  font-size: 0.9rem; font-weight: 600; padding: 10px 20px; border-radius: 100px;
+  border: 1px solid var(--line); color: var(--ink);
+  transition: transform 0.3s var(--ease), background 0.3s ease, opacity 0.3s ease;
+}
+.project__link:hover { transform: translateY(-2px); background: rgba(20,20,25,0.04); }
+.project__link--primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.project__link--primary:hover { background: var(--ink); opacity: 0.9; }
 
 /* CONTACT */
 .contact {

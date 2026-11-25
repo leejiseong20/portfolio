@@ -69,7 +69,7 @@ function motifSvgContent(type: Motif) {
   }
 }
 
-function Placeholder({ num, title, motif }: { num: string; title: string; motif: Motif }) {
+function Placeholder({ num, title, motif, hasLink }: { num: string; title: string; motif: Motif; hasLink: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@ function Placeholder({ num, title, motif }: { num: string; title: string; motif:
         {title}
       </text>
       <text x={240} y={282} fontFamily="monospace" fontSize={12} fill="#9a9ea6" textAnchor="middle">
-        ↑ 스크린샷을 추후 교체 예정
+        {hasLink ? "클릭하여 사이트 방문 ↗" : "스크린샷 준비 중"}
       </text>
     </svg>
   );
@@ -109,12 +109,25 @@ function ProjectRow({ project, flip }: { project: typeof PROJECTS[0]; flip: bool
       ref={ref as React.RefObject<HTMLElement>}
     >
       <div className="project__media" ref={pref as React.RefObject<HTMLDivElement>}>
-        <div
-          className="project__media-frame"
-          style={{ transform: `translateY(${shift}px)` }}
-        >
-          <Placeholder num={project.num} title={project.title} motif={project.motif} />
-        </div>
+        {project.links.service ? (
+          <a
+            href={project.links.service}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project__media-frame project__media-frame--link"
+            style={{ transform: `translateY(${shift}px)` }}
+            aria-label={`${project.title} 사이트 열기`}
+          >
+            <Placeholder num={project.num} title={project.title} motif={project.motif} hasLink />
+          </a>
+        ) : (
+          <div
+            className="project__media-frame"
+            style={{ transform: `translateY(${shift}px)` }}
+          >
+            <Placeholder num={project.num} title={project.title} motif={project.motif} hasLink={false} />
+          </div>
+        )}
         <span className="project__num">{project.num}</span>
       </div>
 
@@ -135,16 +148,18 @@ function ProjectRow({ project, flip }: { project: typeof PROJECTS[0]; flip: bool
             <li key={i} className="tag">{t}</li>
           ))}
         </ul>
-        {project.link && (
-          <a
-            className="project__link"
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {project.link.includes("github.com") ? "GitHub 저장소 보기 ↗" : "사이트 보기 ↗"}
-          </a>
-        )}
+        <div className="project__links">
+          {project.links.service && (
+            <a href={project.links.service} target="_blank" rel="noopener noreferrer" className="project__link project__link--primary">
+              서비스 보기 ↗
+            </a>
+          )}
+          {project.links.github && (
+            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="project__link">
+              GitHub ↗
+            </a>
+          )}
+        </div>
       </div>
     </article>
   );

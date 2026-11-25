@@ -81,7 +81,10 @@ export const PROJECTS = [
       { k: "장소 데이터", v: "2,000+" },
       { k: "소셜 로그인", v: "3종" },
     ],
-    link: "https://github.com/keumbyeol/Yeoback-2026",
+    links: {
+      service: "https://yeoback.duckdns.org",
+      github: "https://github.com/keumbyeol/Yeoback-2026",
+    },
     motif: "chat" as const,
   },
   {
@@ -95,7 +98,10 @@ export const PROJECTS = [
       { k: "AI 검증", v: "실경기 10개" },
       { k: "개발", v: "기획~배포 단독" },
     ],
-    link: "https://github.com/leejiseong20/topsiya",
+    links: {
+      service: "https://topsiya.duckdns.org",
+      github: "https://github.com/leejiseong20/topsiya",
+    },
     motif: "logs" as const,
   },
   {
@@ -109,7 +115,9 @@ export const PROJECTS = [
       { k: "브레이크포인트", v: "3단계" },
       { k: "콘텐츠 보존", v: "100%" },
     ],
-    link: "http://www.southse.co.kr/",
+    links: {
+      service: "http://www.southse.co.kr/",
+    } as { service?: string; github?: string },
     motif: "commerce" as const,
   },
 ];
