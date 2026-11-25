@@ -85,6 +85,8 @@ export const PROJECTS = [
       service: "https://yeoback.duckdns.org",
       github: "https://github.com/keumbyeol/Yeoback-2026",
     },
+    image: "/projects/yeoback.webp",
+    imagePosition: "center",
     motif: "chat" as const,
   },
   {
@@ -102,6 +104,8 @@ export const PROJECTS = [
       service: "https://topsiya.duckdns.org",
       github: "https://github.com/leejiseong20/topsiya",
     },
+    image: "/projects/topsiya.webp",
+    imagePosition: "center top",
     motif: "logs" as const,
   },
   {
@@ -118,6 +122,8 @@ export const PROJECTS = [
     links: {
       service: "http://www.southse.co.kr/",
     } as { service?: string; github?: string },
+    image: "/projects/southse.webp",
+    imagePosition: "left center",
     motif: "commerce" as const,
   },
 ];

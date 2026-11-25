@@ -103,6 +103,19 @@ function ProjectRow({ project, flip }: { project: typeof PROJECTS[0]; flip: bool
   const [pref, p] = useScrollProgress();
   const shift = (p - 0.5) * 36;
 
+  const media = project.image ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={project.image}
+      alt={`${project.title} 화면`}
+      className="project__placeholder project__shot"
+      style={{ objectPosition: project.imagePosition ?? "center" }}
+      loading="lazy"
+    />
+  ) : (
+    <Placeholder num={project.num} title={project.title} motif={project.motif} hasLink={!!project.links.service} />
+  );
+
   return (
     <article
       className={`project${flip ? " project--flip" : ""}${shown ? " is-in" : ""}`}
@@ -118,14 +131,14 @@ function ProjectRow({ project, flip }: { project: typeof PROJECTS[0]; flip: bool
             style={{ transform: `translateY(${shift}px)` }}
             aria-label={`${project.title} 사이트 열기`}
           >
-            <Placeholder num={project.num} title={project.title} motif={project.motif} hasLink />
+            {media}
           </a>
         ) : (
           <div
             className="project__media-frame"
             style={{ transform: `translateY(${shift}px)` }}
           >
-            <Placeholder num={project.num} title={project.title} motif={project.motif} hasLink={false} />
+            {media}
           </div>
         )}
         <span className="project__num">{project.num}</span>
